@@ -1,0 +1,18 @@
+<!-- templates/profile.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="title">
+        Welcome, {{ name }}!
+    </h1>
+    <h2 class="subtitle">
+        Your First Name is {{ name }}
+    </h2>
+    <h2 class="subtitle">
+        Your Last Name is {{ last_name }}
+    </h2>
+    <h2 class="subtitle">
+        Your Email is {{ email }}
+    </h2>
+{% endblock %}
