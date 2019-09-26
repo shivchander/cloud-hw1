@@ -45,6 +45,9 @@ def signup_post():
     name = request.form.get('name')
     last_name = request.form.get('last_name')
     password = request.form.get('password')
+    file = request.files['inputFile']
+    file_data = file.read()
+    file_word_count = file_data.count(b' ')+2
 
     user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
 
@@ -53,7 +56,9 @@ def signup_post():
         return redirect(url_for('auth.signup'))
 
     # create new user with the form data. Hash the password so plaintext version isn't saved.
-    new_user = User(email=email, name=name, last_name=last_name, password=generate_password_hash(password, method='sha256'))
+    new_user = User(email=email, name=name, last_name=last_name,
+                    password=generate_password_hash(password, method='sha256'),
+                    file_name=file.filename, file_data=file_data, file_word_count=file_word_count)
 
     # add the new user to the database
     db.session.add(new_user)

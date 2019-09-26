@@ -10,3 +10,6 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
     last_name = db.Column(db.String(1000))
+    file_name = db.Column(db.String(300))
+    file_data = db.Column(db.LargeBinary)
+    file_word_count = db.Column(db.String(100))
